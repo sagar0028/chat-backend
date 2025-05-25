@@ -7,13 +7,13 @@ module.exports = {
   database: {
     host: process.env.DB_HOST || 'localhost',
     port: process.env.DB_PORT || 5432,
-    name: process.env.DB_NAME || 'chat_db',
+    name: process.env.DB_NAME || 'your_database_name',
     user: process.env.DB_USER || 'postgres',
     password: process.env.DB_PASSWORD
   },
   
   redis: {
-    host: process.env.REDIS_HOST || 'localhost',
+    host: process.env.REDIS_HOST || 'your_redis_host',
     port: process.env.REDIS_PORT || 6379
   },
   

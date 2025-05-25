@@ -8,7 +8,7 @@ const pgPool = new Pool({
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
-  port: 55432,
+  port: process.env.DB_PORT,
   max: 20, // Maximum number of clients in the pool
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
@@ -21,7 +21,6 @@ const db = knex({
     min: 2,
     max: 10,
     afterCreate: (conn, done) => {
-      // Set session parameters, timezone, etc.
       conn.query('SET timezone="UTC";', (err) => {
         done(err, conn);
       });
@@ -29,7 +28,6 @@ const db = knex({
   },
 });
 
-// Event listeners for pool
 pgPool.on('error', (err) => {
   console.error('Unexpected error on idle client', err);
   process.exit(-1);
